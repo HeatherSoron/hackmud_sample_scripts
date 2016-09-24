@@ -1,10 +1,10 @@
 // Instructional script for cracking EZ_21 locks.
-// Syntax: script {t: #s.loc }
+// Syntax: script {t: #s.some_user.their_loc }
 // By mushin0
  
 function (context, args){
-    var target = args.t;                // target = #s.loc
-    var response = target.call({});     // response = #s.loc{}.call({})
+    var target = args.t;                // target = #s.some_user.their_loc
+    var response = target.call({});     // response = #s.some_user.their_loc.call({})
     var substring1 = "EZ_21";           // check var for lock type
     var substring2 = "UNLOCKED";        // check var for unlocked
     var i = 0;                          // counter for array
