@@ -4,7 +4,7 @@
   "description": "Test framework for hackmud scripts",
   "main": "runhacksim.js",
   "dependencies": {
-    "mongodb": "^2.2.10",
+    "mongo-sync": "^2.0.1",
     "really-need": "^1.0.0"
   },
   "devDependencies": {},

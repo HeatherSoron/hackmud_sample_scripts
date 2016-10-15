@@ -1,31 +1,24 @@
+var MSServer = require("mongo-sync").Server;
+var Fiber = require('fibers');
+var Future = require('fibers/future'), wait = Future.wait;
 require = require("really-need");
-const util = require('util');
 
-var MongoClient = require('mongodb').MongoClient
-    , assert = require('assert');
-
-// Connection URL
-var url = 'mongodb://localhost:27017/myproject?w=1';
-
+// FYI: var url = 'mongodb://localhost:27017/hackmud?w=1';
 
 var mdbproxy = {
     collection: null,
     database: null,
     result: [],
-    connect: function (callback) {
+    flag: false,
+    msserver: null,
+    connect: function () {
 
-        var self = this;
-        // Use connect method to connect to the Server
-        MongoClient.connect(url, function (err, db) {
-            assert.equal(null, err);
-            console.log("Connected correctly to server");
-
-            self.database = db;
-            // Get the documents collection
-            self.collection = db.collection('documents');
-
-            callback();
-        });
+        var msserver = new MSServer("127.0.0.1");
+        var msdb = msserver.db("hackmud");
+        var coll = msdb.getCollection("testfw");
+        this.collection = coll;
+        this.database = msdb;
+        this.msserver = msserver;
     },
     remove: function (id) {
         return this.collection.remove(id);
@@ -38,16 +31,21 @@ var mdbproxy = {
     },
     find: function (id) {
         var self = this;
-        self.result = self.collection.find(id).limit(20);
+        var res = self.collection.find(id);
         return {
-            array: function () {
-                // TBD remove hardcoded values and fix crud
-                return [{k:"T1",n:"123456", pr:"abcdefg", sl:4}];
+            array: function () {                
+                return res.toArray();
             }
         };
     },
+    cleanup: function () {
+
+    },
+    removeCollection: function () {
+        mdbproxy.collection.remove();
+    },
     disconnect: function () {
-        this.database.close();
+        this.msserver.close();
     }
 };
 
@@ -92,14 +90,12 @@ var preFunction = function (source, filename) {
     str = str.replace(new RegExp("#db\.f\\\(", 'g'), "zzzdb.find(");
     str = str.replace(new RegExp("#[^a-zA-Z0-9\.]*", 'g'), "");
     patched = patched + str;
-//    console.log(patched);
     return patched;
 };
 
 module.exports.register_user_script = function (obj, alias) {
 
     console.log("Registering user script as " + alias);
-    console.log(util.inspect(obj, { showHidden: true, depth: 2 }));
 
     global.zzzus[alias] = obj;
 };
@@ -108,16 +104,22 @@ module.exports.testAll = function (script, testCallback) {
     var scriptalias = script.replace("./", "").replace("/", "").replace(".js", "");
     global.zzzus[scriptalias] = function (context, args) { };
 
+    console.log("=======Running test script: " + script+ "=======");
+    console.log("===\tLoading script with adaptations...");
     const intest = require(script, { pre: preFunction });
-    
-    console.log(util.inspect(intest, { showHidden: true, depth: 2 }));
 
-    mdbproxy.connect(function () {
-        var res = mdbproxy.insert({ k: "T1", n: "123456", pr: "abcdef", sl: 4 })
-       
+    console.log("===\tConnecting to MongoDB...");
+    mdbproxy.connect();
+    console.log("===\tRunning the test code:");
+    try {
         testCallback(intest, scriptalias);
-
+        console.log("=OK\tClean exit from test code!");
+    } catch (e) {
+        console.log("ERR\tException occurred in test code: " + e);
+    } finally {
+        console.log("===\tCleaning up MongoDB");
+        mdbproxy.removeCollection();
         mdbproxy.disconnect();
-    });
-    
+    }
+
 }

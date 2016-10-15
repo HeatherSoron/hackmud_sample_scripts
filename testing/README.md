@@ -9,6 +9,10 @@ preprocessed before being handed to node. This library uses that to replace
 references to scriptors in hackmud and to hook in the standard hackmud library
 functions, like #s.scripts.lib.get_log().
 
+It also mocks some #db operations, which is the reason for all the Fiber usage,
+without Fibers, it's not possible to run synchronous database operations against
+MongoDB like hackmud. This is done courtesy of the mongo-sync package.
+
 # What do you need?
 You need nodejs 4.0.0 because really-need preprocesses hackmud scripts,
 and seems to currently only work with that version of node. Optionally, you need
@@ -65,6 +69,30 @@ tester.testAll("./(username)/cracker.js", function (crackerLib) {
 
 (or F5 in Visual Studio)
 
+# Libraries needed (not distributed, use NPM)
+
+really-need
+mongo-sync
+mongodb
+mongodb-core
+fibers
+
+##Indirect
+bson
+check-more-types
+common-utils
+core-util-is
+inherits
+isarray
+kerberos
+lazy-ass
+minimist
+mkdirp
+nan
+readable-stream
+rimraf
+string_decoder
+
 # VS Install sheet
 
 Microsoft Visual Studio Community 2015
@@ -81,7 +109,6 @@ Node.js Tools   1.2.40726.00
 Node.js Tools - Profiling   1.2.40726.00
 TypeScript   1.8.35.0
 TypeScript tools for Visual Studio
-
 
 # License
 
