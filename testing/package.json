@@ -1,0 +1,22 @@
+{
+  "name": "hackmudlib",
+  "version": "0.0.1",
+  "description": "Test framework for hackmud scripts",
+  "main": "runhacksim.js",
+  "dependencies": {
+    "mongodb": "^2.2.10",
+    "really-need": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "runhacksim {tests: true}"
+  },
+  "keywords": [
+    "hackmud"
+  ],
+  "author": "d00mlaut",
+  "license": "ISC",
+  "engines": {
+    "node": "4.0.0"
+  }
+}
