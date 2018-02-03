@@ -4,7 +4,7 @@
 // edited by zeta
  
 function (context, args){
-    var target = args.t, response = target.call({}), passwords = ["unlock","open","release"], call_args = {}
+    var target = args.t, response = target.call({}), passwords = ["unlock","open","release"], call_args = {};
  
     /* target = #s.some.loc
      * response = #s.some.loc.call({})
@@ -25,7 +25,7 @@ function (context, args){
     if ( response.includes("EZ_21") ) {                            // we check if the first lock is EZ_21. if it is, we get to cracking it
         for ( var i = 0; i < passwords.length; i++ ) {             // we use a for loop, which runs once for each element in the array "passwords"
             call_args.EZ_21 = passwords[i];                        // we make a key:value pair in the call_args object with the key EZ_21 and the current password as the value
-            response = target.call(call_args)                      // we update the variable "response" with the output we get after trying a password
+            response = target.call(call_args);                     // we update the variable "response" with the output we get after trying a password
             if ( response.includes("`NLOCK_UNLOCKED` EZ_21") ) {   // we check if the output contains the LOCK_UNLOCKED message of the EZ_21 lock
                 break;                                             // if it does include it, we break out of the loop. if it doesnt, we try the next password
             }
