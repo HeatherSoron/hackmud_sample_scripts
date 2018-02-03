@@ -5,6 +5,7 @@ function (c,a) { //l:#s.sys.access_log, t:#s.accts.transactions, con:false
 
 	if (!a) return "\n`APass` `Nt`:`V#s.``Faccts``V.``Ltransactions` `Aand` `Nl`:`V#s.``Fsys``V.``Laccess_log` `Aas parameters in order to highlight any suspicious entries.`\n`AYou can also use con:true in order to also show connection attempts.`" 
 	if (typeof a.t !== "object") throw new Error("`AYou need to input a scriptor, not a string! Example:` `V#s.``Fsys``V.``Laccess_log`")
+	if (typeof a.l !== "object") throw new Error("`AYou need to input a scriptor, not a string! Example:` `V#s.``Faccts``V.``Ltransactions`")
 	var logcall = a.l.call({count:500}),
 	locrgx = new RegExp(`${c.caller}\.(info|out|external|extern|public|pub|pub_info|pubinfo|p|access|entry)_[a-z0-9]{6}`),
 	txcall = a.t.call({count:500}).transactions,
