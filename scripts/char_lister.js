@@ -2,7 +2,7 @@
 function (context, args) { // characters:#
 	//return on a failure
 	if (!args){
-		return{
+		return {
 			ok: false,
 			msg: "Define how many !characters! you want to display (The list starts at 01)."
 		}
@@ -17,7 +17,7 @@ function (context, args) { // characters:#
 		}
 	}
 	//returns the string along with a way to use them effectively in a script
-	return{
+	return {
 		ok: true,
 		msg: "Display characters in your scripts by assigning them to a variable:\n`2var char= STRING.fromCharCode(number)`\n"+block
 	}
