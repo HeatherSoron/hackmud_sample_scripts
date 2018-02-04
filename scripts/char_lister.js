@@ -7,7 +7,7 @@ function (_, a) { // characters:""
 	if (!a){
 		return {
 			ok: false,
-			msg: "Define how many !characters! you want to display (The list starts at 01)."
+			msg: "Define how many `Ncharacters` you want to display (The list starts at 01)."
 		}
 	}
 	//iterates through a for loop, converting the numbers to characters
