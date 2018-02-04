@@ -1,4 +1,4 @@
-function (_, args) { // ch:"", msg:""
+function (context, args) { // ch:"", msg:""
 	// we want to color our text, using soron.color_utils. Run that script on command line to set up your chat color
 	var text = #fs.soron.color_utils({colorize: args.msg});
 	
