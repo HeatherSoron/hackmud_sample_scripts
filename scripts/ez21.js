@@ -3,7 +3,7 @@
 // By mushin0
 // edited by zeta
  
-function (context, args){
+function (_, args){
     var target = args.t, response = target.call({}), passwords = ["unlock","open","release"], call_args = {}
  
     /* target = #s.some.loc

@@ -1,6 +1,7 @@
 // contributed by @junkie. Thanks!
 // edited by d3f4ult for more readability
-// 
+//this is called a low-dash parameter -- since we're not using context in this script *at all*, and we *need* to declare it, it is just an underscore
+//        ↓
 function (_, a) { // characters:""
 	//return on a failure
 	if (!a){

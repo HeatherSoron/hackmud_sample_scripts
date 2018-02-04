@@ -1,5 +1,5 @@
 // this script hooks into a player-provided utility to track the number of calls
-function(context, args) {
+function(context) {
 
 	// we'll wrap the analytics in a try-catch, so that a failure during recording doesn't break the rest of the script
 	try {

@@ -1,4 +1,4 @@
-function (c,a) { //f:0, args:0
+function (_,a) { //f:0, args:0
 	// made by d3f4ult -- no rights reserved ( CC0 )
 	// https://creativecommons.org/publicdomain/zero/1.0/
 	const l = #fs.scripts.lib()

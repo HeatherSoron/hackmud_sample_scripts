@@ -1,4 +1,4 @@
-function (context, args) {
+function (_, args) {
 	// if you're running out of characters, you COULD delete this if block, to save on character count. You lose a help message, but it drops the script to below 500 (counted) characters.
 	if (!args || !args.target) {
 		return {
