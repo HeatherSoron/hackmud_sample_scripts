@@ -18,7 +18,7 @@ I welcome contributions! Couple rules:
 * No _functional_ lock cracking scripts. I'll accept certain incomplete (non-functional) lock cracking scripts, but not completed ones.
 * If you add obvious backdoors, please point them out via a comment ;).
 
-Since this is a multiplayer game and I am pretend-rich, I can offer in-game credits (GC) to people who want to write sample code rather than crackking NPCs or PVPing. Contact me to make arrangements.
+Since this is a multiplayer game and I am pretend-rich, I can offer in-game credits (GC) to people who want to write sample code rather than cracking NPCs or PVPing. Contact me to make arrangements.
 
 # License
 
