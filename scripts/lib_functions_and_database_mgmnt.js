@@ -24,8 +24,8 @@ function (c,a) { //f:0, args:0
 		// #db.us/u/u1() accepts two objects as parameters - the first one is a query, and the latter one contains the data to insert/update.
 		// upsert is insert & update one combined into a convenient package -- if the query search succeeds, it updates the first [cont. on newline]
 		// entry it finds; else, create the entry with the data from the 2nd object
-		// update just updates all entries with the data from the second object - same as with upsert, but this updates *all* entries at once;
-		// useful when changing overall database structure
+		// update just updates entries with the data from the second object - same as with upsert, but this updates *all* entries at once;
+		// ^ useful when changing entire database structures
 		
 		// NOTE: ALWAYS make sure that you are querying the DB correctly! Faulty queries can trigger unexpected errors!
 		// (each time that comes up, it e-mails Sean, so you *definitely* want to avoid it)
@@ -38,7 +38,7 @@ function (c,a) { //f:0, args:0
 		case "from_gc":
 			return "\n`AInput: " + a.f + "`\n" + "`AOutput: " + l.to_gc_num(a.args) + "`"
 		case "timestr":
-			return l.to_game_timestr(new Date())
+			return "\n`A"+l.to_game_timestr(new Date())+"`"
 		case "i":
 			#db.i(a.args)
 			return #db.f(a.args) 
@@ -46,7 +46,7 @@ function (c,a) { //f:0, args:0
 			return #db.f(a.args).array()
 		case "r":
 			#db.r(a.args)
-			return "Entry deleted."
+			return "\nEntry deleted."
 		case "u":
 			#db.u(a.args[0], a.args[1])
 			return #db.f(a.args[0]).array()
