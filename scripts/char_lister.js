@@ -1,26 +1,23 @@
 // contributed by @junkie. Thanks!
-// edited by d3f4ult for more readability
-//this is called a low-dash parameter -- since we're not using context in this script *at all*, and we *need* to declare it, it is just an underscore
-//        ↓
-function (_, a) { // characters:""
+function (context, args) { // characters:#
 	//return on a failure
-	if (!a){
-		return {
+	if (!args){
+		return{
 			ok: false,
 			msg: "Define how many `Ncharacters` you want to display (The list starts at 01)."
 		}
 	}
 	//iterates through a for loop, converting the numbers to characters
-	//note - for (let foo; foo<bar.length; foo++) syntax is less readable than a for...in loop - changed it
 	var block = "";
-	for (let i in a.characters) {
+	for (var i = 1; i < args.characters; i++){
+		// note that vanilla JS uses String, but it's recommended in hackmud to use STRING (less hackable - the reason why is an advanced topic)
 		block += String.fromCharCode(i) + " ";
 		if (i%10 == 0){
 			block+="\n" + i + ": ";
 		}
 	}
 	//returns the string along with a way to use them effectively in a script
-	return {
+	return{
 		ok: true,
 		msg: "Display characters in your scripts by assigning them to a variable:\n`2var char= String.fromCharCode(number)`\n"+block
 	}
