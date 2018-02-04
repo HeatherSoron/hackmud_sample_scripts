@@ -1,7 +1,7 @@
 //This script just demonstrates how a cracker would work.
 //Executing this code in-game WOULD NOT WORK!!!
 function (context,args) { 
-  var std = #s.scripts.lib(); //For logging messages
+  var std = #fs.scripts.lib(); //For logging messages
   var c_1 = ["x","y","z"]; //Possibilities for lock 1
   var c_2 = ["a","b","c"]; //Possibilities for lock 2
   var c_3 = [1,2,3];       //Possibilities for lock 3
