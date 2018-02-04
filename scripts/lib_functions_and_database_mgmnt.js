@@ -41,7 +41,7 @@ function (c,a) { //f:0, args:0
 			return "\n`A"+l.to_game_timestr(new Date())+"`"
 		case "i":
 			#db.i(a.args)
-			return #db.f(a.args).array()
+			return #db.f(a.args) 
 		case "f":
 			return #db.f(a.args).array()
 		case "r":
