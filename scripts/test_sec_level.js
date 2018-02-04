@@ -9,9 +9,9 @@ function (context, args) {
 
 	var target = args.target;
 	// scripts.get_level returns a number inside scripts, or a string like 'FULLSEC' or 'MIDSEC' on command line
-	var sec_level = #s.scripts.get_level({name:target.name});
+	var sec_level = #fs.scripts.get_level({name:target.name});
 	
-	var l = #s.scripts.lib();
+	var l = #fs.scripts.lib();
 	
 	// is it less than FULLSEC? if so, warn the user
 	if (sec_level < 4 && !args.override) {
